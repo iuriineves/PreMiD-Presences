@@ -84,7 +84,9 @@ presence.on("UpdateData", async () => {
 				? [LargImages.Animated, LargImages.Logo, LargImages.Noback][logoType] ||
 				  LargImages.Logo
 				: metadata.data.video.boxart.at(0).url,
-			smallImageKey: showSmallImages ? Assets.Reading : "",
+			...(showSmallImages && {
+				smallImageKey: Assets.Reading,
+			}),
 			smallImageText: strings.browse,
 			buttons: [
 				{
@@ -139,22 +141,21 @@ presence.on("UpdateData", async () => {
 							logoType
 					  ] || LargImages.Logo
 					: metadata.data.video.boxart.at(0).url,
-				smallImageKey: showSmallImages
-					? paused
-						? Assets.Pause
-						: Assets.Play
-					: "",
-				smallImageText: paused ? strings.pause : strings.play,
-				...(showTimestamp && {
-					startTimestamp: paused ? null : startTimestamp,
-					endTimestamp: paused ? null : endTimestamp,
-				}),
+				largeImageText: `Season ${season.seq.toString()}, Episode ${episode.seq.toString()}`,
+				...(showSmallImages &&
+					paused && {
+						smallImageKey: Assets.Pause,
+						smallImageText: strings.pause,
+					}),
+				...(showTimestamp &&
+					!paused && {
+						startTimestamp,
+						endTimestamp,
+					}),
 				...(usePresenceName && {
 					name: metadata.data.video.title,
 					details: episode.title,
-					state: strings.seriesDisplayFull
-						.replace("{0}", season.seq.toString())
-						.replace("{1}", episode.seq.toString()),
+					state: episode.synopsis,
 				}),
 				buttons: [
 					{
@@ -192,16 +193,15 @@ presence.on("UpdateData", async () => {
 							logoType
 					  ] || LargImages.Logo
 					: metadata.data.video.boxart.at(0).url,
-				smallImageKey: showSmallImages
-					? paused
-						? Assets.Pause
-						: Assets.Play
-					: "",
-				smallImageText: paused ? strings.pause : strings.play,
-				...(showTimestamp && {
-					startTimestamp: paused ? null : startTimestamp,
-					endTimestamp: paused ? null : endTimestamp,
+				...(showSmallImages && {
+					smallImageKey: paused ? Assets.Pause : Assets.Play,
 				}),
+				smallImageText: paused ? strings.pause : strings.play,
+				...(showTimestamp &&
+					!paused && {
+						startTimestamp,
+						endTimestamp,
+					}),
 				...(usePresenceName && {
 					name: metadata.data.video.title,
 				}),
