@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.premid.app/metadata/1.12",
+	"apiVersion": 1,
+	"author": {
+		"id": "290528827715747841",
+		"name": "iuriineves"
+	},
+	"service": "RTP Play",
+	"description": {
+		"en": "Rádio e Televisão de Portugal (RTP) is the public service broadcasting organisation of Portugal. It operates four national television channels and three national radio stations, as well as several satellite and cable offerings."
+	},
+	"url": "www.rtp.pt",
+	"version": "1.0.0",
+	"logo": "https://raw.githubusercontent.com/iuriineves/premid-assets/refs/heads/main/RTP%20Player/logo.png",
+	"thumbnail": "https://raw.githubusercontent.com/iuriineves/premid-assets/refs/heads/main/RTP%20Player/banner.png",
+	"color": "#0074ff",
+	"category": "videos",
+	"tags": [
+		"rtp",
+		"rtpplay",
+		"movies",
+		"shows",
+		"series",
+		"entertainment",
+		"portugal"
+	]
+}
